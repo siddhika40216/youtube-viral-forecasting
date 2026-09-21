@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>YouTube Viral Forecasting</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="page">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="brand">
+                <div class="logo">▶</div>
+
+                <div>
+                    <h1>YouTube Viral Forecasting</h1>
+                    <p>Machine Learning based video performance prediction</p>
+                </div>
+            </div>
+
+            <div class="status">
+                <span></span>
+                ML Model Active
+            </div>
+
+        </header>
+
+
+        <!-- MAIN -->
+        <main class="main">
+
+            <div class="intro">
+                <h2>Predict Video Virality</h2>
+
+                <p>
+                    Enter the video's early performance and publishing
+                    information to estimate its probability of becoming viral.
+                </p>
+            </div>
+
+
+            <form id="predictionForm">
+
+                <!-- PERFORMANCE -->
+                <section class="card">
+
+                    <div class="card-header">
+                        <div class="icon">📊</div>
+
+                        <div>
+                            <h3>Early Performance</h3>
+                            <p>Current engagement metrics</p>
+                        </div>
+                    </div>
+
+
+                    <div class="grid">
+
+                        <div class="input-group">
+                            <label>Current Views</label>
+
+                            <input
+                                type="number"
+                                id="views"
+                                min="0"
+                                value="50000"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>Current Likes</label>
+
+                            <input
+                                type="number"
+                                id="likes"
+                                min="0"
+                                value="2500"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>Current Comments</label>
+
+                            <input
+                                type="number"
+                                id="comments"
+                                min="0"
+                                value="300"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>Category ID</label>
+
+                            <input
+                                type="number"
+                                id="category_id"
+                                min="1"
+                                max="50"
+                                value="24"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- PUBLISHING -->
+                <section class="card">
+
+                    <div class="card-header">
+
+                        <div class="icon">🕒</div>
+
+                        <div>
+                            <h3>Publishing Details</h3>
+                            <p>Video timing and metadata</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="grid">
+
+                        <div class="input-group">
+                            <label>Publishing Hour</label>
+
+                            <input
+                                type="number"
+                                id="publish_hour"
+                                min="0"
+                                max="23"
+                                value="14"
+                                required
+                            >
+
+                            <small>0 - 23</small>
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>Publishing Day</label>
+
+                            <input
+                                type="number"
+                                id="publish_day"
+                                min="0"
+                                max="6"
+                                value="2"
+                                required
+                            >
+
+                            <small>0 = Monday, 6 = Sunday</small>
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>Publishing Month</label>
+
+                            <input
+                                type="number"
+                                id="publish_month"
+                                min="1"
+                                max="12"
+                                value="9"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>Title Length</label>
+
+                            <input
+                                type="number"
+                                id="title_length"
+                                min="1"
+                                value="60"
+                                required
+                            >
+
+                            <small>Number of characters</small>
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>Number of Tags</label>
+
+                            <input
+                                type="number"
+                                id="tag_count"
+                                min="0"
+                                value="8"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- SETTINGS -->
+                <section class="card">
+
+                    <div class="card-header">
+
+                        <div class="icon">⚙</div>
+
+                        <div>
+                            <h3>Video Settings</h3>
+                            <p>Additional video information</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings">
+
+                        <label class="toggle-row">
+
+                            <span>
+                                <strong>Comments Disabled</strong>
+                                <small>Comments are unavailable on the video</small>
+                            </span>
+
+                            <input
+                                type="checkbox"
+                                id="comments_disabled"
+                            >
+
+                            <span class="toggle"></span>
+
+                        </label>
+
+
+                        <label class="toggle-row">
+
+                            <span>
+                                <strong>Ratings Disabled</strong>
+                                <small>Video ratings are unavailable</small>
+                            </span>
+
+                            <input
+                                type="checkbox"
+                                id="ratings_disabled"
+                            >
+
+                            <span class="toggle"></span>
+
+                        </label>
+
+
+                        <label class="toggle-row">
+
+                            <span>
+                                <strong>Video Error or Removed</strong>
+                                <small>Video contains an error or was removed</small>
+                            </span>
+
+                            <input
+                                type="checkbox"
+                                id="video_error_or_removed"
+                            >
+
+                            <span class="toggle"></span>
+
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+                <!-- BUTTON -->
+                <button
+                    type="submit"
+                    class="predict-btn"
+                >
+
+                    <span>Predict Virality</span>
+
+                    <span class="arrow">→</span>
+
+                </button>
+
+            </form>
+
+
+            <!-- RESULT -->
+            <div
+                id="result"
+                class="result hidden"
+            >
+
+                <div class="result-icon">✓</div>
+
+                <div class="result-content">
+
+                    <p class="result-label">
+                        MODEL PREDICTION
+                    </p>
+
+                    <h2 id="predictionText"></h2>
+
+                    <div class="probability-row">
+
+                        <span>Viral Probability</span>
+
+                        <strong id="probability"></strong>
+
+                    </div>
+
+                    <div class="progress">
+                        <div
+                            id="progressBar"
+                            class="progress-bar"
+                        ></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </main>
+
+
+        <!-- FOOTER -->
+        <footer>
+            YouTube Viral Forecasting • Machine Learning Project
+        </footer>
+
+    </div>
+
+
+    <script src="/static/script.js"></script>
+
+</body>
+
+</html>
