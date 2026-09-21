@@ -143,6 +143,7 @@ youtube-viral-forecasting/
 ├── .gitignore
 └── README.md
 
+```
 ## Technologies Used
 
 - Python
@@ -161,9 +162,9 @@ youtube-viral-forecasting/
 ### 1. Clone the repository
 
 ```bash
-git clone <https://github.com/siddhika40216/youtube-viral-forecasting>
+git clone < https://github.com/siddhika40216/youtube-viral-forecasting >
 cd youtube-viral-forecasting
-
+```
 ### 2. Install the required packages
 
 pip install -r requirements.txt
